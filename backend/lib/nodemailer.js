@@ -19,7 +19,6 @@ export const sender = {
     email: ENV.SENDER_EMAIL,
 };
 
-// export const sender = `${ENV.SENDER_NAME} <${ENV.SENDER_EMAIL}>`;
 
 transporter.verify((error, success) => {
     if (error) {
