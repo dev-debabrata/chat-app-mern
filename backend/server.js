@@ -1,6 +1,8 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import path from "path";
+import cors from "cors";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
@@ -10,10 +12,18 @@ import { ENV } from "./lib/env.js";
 dotenv.config();
 
 const app = express();
-const PORT = ENV.PORT || 3000;
+const PORT = ENV.PORT || 5000;
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser());
+
+app.use(
+    cors({
+        origin: process.env.CLIENT_URL,
+        credentials: true,
+    })
+);
 
 // API routes
 app.use("/api/auth", authRoutes);
@@ -37,7 +47,6 @@ app.listen(PORT, () => {
     console.log("Server running on port: " + PORT)
     connectDB()
 });
-
 
 
 // import express from "express";
