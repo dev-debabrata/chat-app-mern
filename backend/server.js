@@ -26,7 +26,7 @@ app.use(
 
 // API routes
 app.use("/api/auth", authRoutes);
-app.use("/api/message", messageRoutes);
+app.use("/api/messages", messageRoutes);
 
 // ---------------- PRODUCTION FRONTEND SERVE ----------------
 if (ENV.NODE_ENV === "production") {
