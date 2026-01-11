@@ -14,7 +14,7 @@ function ChatPage() {
     const { activeTab, selectedUser } = useChatStore();
 
     return (
-        <div className="relative flex justify-center  w-full max-w-6xl py-4 min-h-screen">
+        <div className="relative flex w-full max-w-6xl h-screen mx-auto py-4 overflow-hidden">
             {/* LEFT SIDE */}
             <div className="w-80 bg-stone-950 backdrop-blur-sm flex flex-col rounded-l-2xl shadow-2xl">
                 <div className=" flex justify-center items-center gap-2 px-8 pt-6 pb-4 border-b border-stone-700">
