@@ -172,8 +172,6 @@ export const logout = (_, res) => {
 };
 
 
-
-// Profile Update
 // Profile Update
 export const updateProfile = async (req, res) => {
     try {

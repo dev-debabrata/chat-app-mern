@@ -77,9 +77,7 @@ function Profile() {
                                 alt="Profile"
                                 className="size-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-black/50 opacity-0 
-                              group-hover:opacity-100 flex items-center 
-                              justify-center transition">
+                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
                                 <CameraIcon className="text-white size-6" />
                             </div>
                         </button>
@@ -99,9 +97,7 @@ function Profile() {
                         <input
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
-                            className="mt-1 w-full bg-stone-800 border border-stone-700 
-                         rounded-lg px-4 py-2 text-stone-200 
-                         focus:outline-none focus:border-cyan-500"
+                            className="mt-1 w-full bg-stone-800 border border-stone-700 rounded-lg px-4 py-2 text-stone-200 focus:outline-none focus:border-cyan-500"
                         />
                     </div>
 
@@ -113,10 +109,7 @@ function Profile() {
                             onChange={(e) => setAbout(e.target.value)}
                             rows={3}
                             placeholder="Write something about yourself…"
-                            className="mt-1 w-full bg-stone-800 border border-stone-700 
-                         rounded-lg px-4 py-2 text-stone-200 
-                         resize-none focus:outline-none 
-                         focus:border-cyan-500"
+                            className="mt-1 w-full bg-stone-800 border border-stone-700 rounded-lg px-4 py-2 text-stone-200 resize-none focus:outline-none focus:border-cyan-500"
                         />
                     </div>
 
@@ -124,10 +117,7 @@ function Profile() {
                     <button
                         onClick={handleSave}
                         disabled={isSaving}
-                        className="w-full py-2 rounded-lg 
-                       bg-cyan-500/20 text-cyan-400 
-                       hover:bg-cyan-500/30 transition 
-                       disabled:opacity-50"
+                        className="w-full py-2 rounded-lg bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30 transition disabled:opacity-50 cursor-pointer"
                     >
                         {isSaving ? (
                             <LoaderIcon className="w-full h-5 animate-spin text-center" />
