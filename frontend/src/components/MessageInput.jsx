@@ -96,7 +96,7 @@ function MessageInput() {
                 <button
                     type="submit"
                     disabled={!text.trim() && !imagePreview}
-                    className="bg-gradient-to-r from-stone-900 to-stone-800 text-white rounded-lg px-4 py-2 font-medium hover:from-stone-700 hover:to-stone-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-gradient-to-r from-stone-900 to-stone-800 text-white rounded-lg px-4 py-2 font-medium hover:from-stone-700 hover:to-stone-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                     <SendIcon className="w-5 h-5" />
                 </button>
