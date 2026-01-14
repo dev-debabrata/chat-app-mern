@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, CameraIcon, LoaderIcon } from "lucide-react";
+import { ArrowLeft, CameraIcon, LoaderIcon, Trash2 } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 
 function Profile() {
@@ -38,6 +38,27 @@ function Profile() {
 
         setIsSaving(false);
     };
+
+    const handleDeleteImage = async () => {
+        setSelectedImg(null);
+
+        // clear file input value
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+
+        setIsSaving(true);
+
+        await updateProfile({
+            fullName,
+            about,
+            profilePic: null,
+        });
+
+        setIsSaving(false);
+    };
+
+
     // const handleSave = async () => {
     //     setIsSaving(true);
     //     await updateProfile({ fullName, about });
@@ -67,28 +88,41 @@ function Profile() {
 
                     {/* AVATAR */}
                     <div className="flex justify-center">
-                        <button
-                            type="button"
-                            onClick={() => fileInputRef.current?.click()}
-                            className="relative group size-28 rounded-full overflow-hidden"
-                        >
-                            <img
-                                src={selectedImg || authUser?.profilePic || "/avatar.png"}
-                                alt="Profile"
-                                className="size-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
-                                <CameraIcon className="text-white size-6" />
-                            </div>
-                        </button>
+                        <div className="relative group size-28">
+                            <button
+                                type="button"
+                                onClick={() => fileInputRef.current?.click()}
+                                className="relative group size-28 rounded-full overflow-hidden"
+                            >
+                                <img
+                                    src={selectedImg || authUser?.profilePic || "/avatar.png"}
+                                    alt="Profile"
+                                    className="size-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+                                    <CameraIcon className="text-white size-6" />
+                                </div>
+                            </button>
 
-                        <input
-                            ref={fileInputRef}
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={handleImageUpload}
-                        />
+                            {/* Delete Icon */}
+                            {(selectedImg || authUser?.profilePic) && (
+                                <button
+                                    onClick={handleDeleteImage}
+                                    title="Remove photo"
+                                    className="absolute bottom-1 right-1 bg-red-600 hover:bg-red-800 p-1.5 rounded-full shadow-lg cursor-pointer"
+                                >
+                                    <Trash2 className="size-4 text-white" />
+                                </button>
+                            )}
+
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={handleImageUpload}
+                            />
+                        </div>
                     </div>
 
                     {/* FULL NAME */}

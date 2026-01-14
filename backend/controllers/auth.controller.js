@@ -69,6 +69,95 @@ export const signup = async (req, res) => {
     }
 };
 
+
+// Login Authentication
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: "Email and password are required" });
+    }
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).json({ message: "Invalid username" });
+        // never tell the client which one is incorrect: password or email
+
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid password" });
+
+        generateToken(user._id, res);
+
+        res.status(200).json({
+            _id: user._id,
+            fullName: user.fullName,
+            email: user.email,
+            profilePic: user.profilePic,
+        });
+    } catch (error) {
+        console.error("Error in login controller:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+
+
+// Logout Authentication
+export const logout = (_, res) => {
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "Logged out successfully" });
+};
+
+
+// Profile Update
+export const updateProfile = async (req, res) => {
+    try {
+        const { profilePic, fullName, about } = req.body;
+        const userId = req.user._id;
+
+        const updateData = {};
+
+        // Update name
+        if (fullName) updateData.fullName = fullName;
+
+        // Update about
+        if (about) updateData.about = about;
+
+
+        //  DELETE image
+        if (profilePic === null) {
+            updateData.profilePic = null;
+        }
+
+        // Update profile picture if provided
+        if (profilePic) {
+            const uploadResponse = await cloudinary.uploader.upload(profilePic, {
+                folder: "chat-app/profiles",
+            });
+            updateData.profilePic = uploadResponse.secure_url;
+        }
+
+        // If nothing to update
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({ message: "Nothing to update" });
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            updateData,
+            { new: true }
+        ).select("-password");
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        console.error("Error in update profile:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+
+
+
 // export const signup = async (req, res) => {
 //     const { fullName, email, password } = req.body;
 
@@ -133,85 +222,6 @@ export const signup = async (req, res) => {
 
 
 
-// Login Authentication
-export const login = async (req, res) => {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-        return res.status(400).json({ message: "Email and password are required" });
-    }
-
-    try {
-        const user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ message: "Invalid username" });
-        // never tell the client which one is incorrect: password or email
-
-        const isPasswordCorrect = await bcrypt.compare(password, user.password);
-        if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid password" });
-
-        generateToken(user._id, res);
-
-        res.status(200).json({
-            _id: user._id,
-            fullName: user.fullName,
-            email: user.email,
-            profilePic: user.profilePic,
-        });
-    } catch (error) {
-        console.error("Error in login controller:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-};
-
-
-
-// Logout Authentication
-export const logout = (_, res) => {
-    res.cookie("jwt", "", { maxAge: 0 });
-    res.status(200).json({ message: "Logged out successfully" });
-};
-
-
-// Profile Update
-export const updateProfile = async (req, res) => {
-    try {
-        const { profilePic, fullName, about } = req.body;
-        const userId = req.user._id;
-
-        const updateData = {};
-
-        // Update name
-        if (fullName) updateData.fullName = fullName;
-
-        // Update about
-        if (about) updateData.about = about;
-
-        // Update profile picture if provided
-        if (profilePic) {
-            const uploadResponse = await cloudinary.uploader.upload(profilePic, {
-                folder: "chat-app/profiles",
-            });
-            updateData.profilePic = uploadResponse.secure_url;
-        }
-
-        // If nothing to update
-        if (Object.keys(updateData).length === 0) {
-            return res.status(400).json({ message: "Nothing to update" });
-        }
-
-        const updatedUser = await User.findByIdAndUpdate(
-            userId,
-            updateData,
-            { new: true }
-        ).select("-password");
-
-        res.status(200).json(updatedUser);
-    } catch (error) {
-        console.error("Error in update profile:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-};
-
 // export const updateProfile = async (req, res) => {
 //     try {
 //         const { profilePic } = req.body;
@@ -233,3 +243,5 @@ export const updateProfile = async (req, res) => {
 //         res.status(500).json({ message: "Internal server error" });
 //     }
 // };
+
+
