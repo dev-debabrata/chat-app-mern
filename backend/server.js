@@ -11,6 +11,9 @@ import { ENV } from "./lib/env.js";
 import { app, server } from "./lib/socket.js";
 
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const PORT = ENV.PORT || 5000;
 
 // Middleware
