@@ -18,9 +18,9 @@ function ChatPage() {
         <div className="relative flex w-full max-w-6xl h-[calc(100vh-2rem)] mx-auto overflow-hidden">
             {/* LEFT SIDE */}
             <div className="w-80 bg-stone-950 backdrop-blur-sm flex flex-col rounded-l-2xl shadow-2xl">
-                <div className=" flex justify-center items-center gap-2 px-8 pt-6 pb-4 border-b border-stone-700">
-                    <img src="/chat-logo-2.png" alt="" className=" w-10 h-10" />
-                    <h1 className=" text-stone-400 font-bold text-3xl ">Message</h1>
+                <div className=" flex justify-center items-center gap-1 px-8 pt-6 pb-4 border-b border-stone-700">
+                    <img src="/chat-logo-2.png" alt="" className=" w-8 h-8 brightness-0 invert sepia saturate-200 hue-rotate-[160deg]" />
+                    <h1 className=" text-stone-200 font-bold text-3xl">DevChat</h1>
                 </div>
                 <ActiveTabSwitch />
 

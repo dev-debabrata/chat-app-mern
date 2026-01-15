@@ -15,30 +15,32 @@ function ContactList() {
 
     return (
         <>
-            {allContacts.map((contact) => (
-                <div
-                    key={contact._id}
-                    className="bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors"
-                    onClick={() => setSelectedUser(contact)}
-                >
-                    <div className="flex items-center gap-3">
-                        <div className={`avatar ${onlineUsers.includes(contact._id) ? "online" : "offline"}`}>
-                            <div className="relative">
-                                <img
-                                    src={contact.profilePic || "/avatar.png"}
-                                    alt={contact.fullName}
-                                    className="size-12 rounded-full object-cover"
-                                />
+            {[...allContacts]
+                .sort((a, b) => a.fullName.localeCompare(b.fullName))
+                .map((contact) => (
+                    <div
+                        key={contact._id}
+                        className="bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors"
+                        onClick={() => setSelectedUser(contact)}
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className={`avatar ${onlineUsers.includes(contact._id) ? "online" : "offline"}`}>
+                                <div className="relative">
+                                    <img
+                                        src={contact.profilePic || "/avatar.png"}
+                                        alt={contact.fullName}
+                                        className="size-12 rounded-full object-cover"
+                                    />
 
-                                {onlineUsers.includes(contact._id) && (
-                                    <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 border-2 border-stone-900"></span>
-                                )}
+                                    {onlineUsers.includes(contact._id) && (
+                                        <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 border-2 border-stone-900"></span>
+                                    )}
+                                </div>
                             </div>
+                            <h4 className="text-stone-200 font-medium">{contact.fullName}</h4>
                         </div>
-                        <h4 className="text-stone-200 font-medium">{contact.fullName}</h4>
                     </div>
-                </div>
-            ))}
+                ))}
         </>
     );
 }
