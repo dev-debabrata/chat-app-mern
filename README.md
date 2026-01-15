@@ -24,6 +24,10 @@ A full-featured real-time chat application built with the MERN stack and Socket.
 
 ![Contact List](./frontend/public/contactlist.png)
 
+### Chat Page
+
+![Chat page](./frontend/public/chatpage.png)
+
 ### Profile Page
 
 ![Profile page](./frontend/public/profile.png)
@@ -36,16 +40,16 @@ A full-featured real-time chat application built with the MERN stack and Socket.
 
 ## Features
 
--Secure Authentication (Login / Signup using JWT)
--Real-time messaging with Socket.IO
--Online / Offline user status
--Typing indicator
--User profile modal
--Zustand for state management
--Fully responsive for mobile & desktop
--MongoDB for persistent storage
--Fast and optimized UI with React + Tailwind
--Auto update chat without refresh
+- Secure Authentication (Login / Signup using JWT)
+- Real-time messaging with Socket.IO
+- Online / Offline user status
+- Typing indicator
+- User profile modal
+- Zustand for state management
+- Fully responsive for mobile & desktop
+- MongoDB for persistent storage
+- Fast and optimized UI with React + Tailwind
+- Auto update chat without refresh
 
 ---
 
@@ -87,17 +91,17 @@ chat-app/
 ## Installation Guide
 
 ```bash
-#1. Clone the repository
+1. Clone the repository
 git clone https://github.com/your-username/your-repo-name.git
 
-#2. Open project
+2. Open project
 cd your-repo-name
 
-#3. Install backend dependencies
+3. Install backend dependencies
 cd server
 npm install
 
-#4. Install frontend dependencies
+4. Install frontend dependencies
 cd client
 npm install
 
@@ -108,19 +112,19 @@ npm install
 ## Run the Project
 
 ```bash
-# Start backend:
+Start backend:
 
 cd server
 npm start
 
 
-# Start frontend:
+Start frontend:
 
 cd client
 npm run dev
 
 
-# Open browser:
+Open browser:
 
 http://localhost:5173
 
@@ -130,13 +134,13 @@ http://localhost:5173
 
 ## What I Learned From This Project
 
--Building real-time apps using Socket.IO
--Managing global state using Zustand
--Authentication with JWT
--Structuring full-stack MERN applications
--REST API development
--UI/UX design using Tailwind CSS
--Clean code and reusable components
+- Building real-time apps using Socket.IO
+- Managing global state using Zustand
+- Authentication with JWT
+- Structuring full-stack MERN applications
+- REST API development
+- UI/UX design using Tailwind CSS
+- Clean code and reusable components
 
 ---
 
@@ -146,6 +150,5 @@ Debabrata Das
 🎓 B.Tech in Computer Science Engineering
 💻 MERN Stack Developer
 
--GitHub: https://github.com/dev-debabrata
-
--LinkedIn: https://www.linkedin.com/in/dev-debabrata
+- GitHub: https://github.com/dev-debabrata
+- LinkedIn: https://www.linkedin.com/in/dev-debabrata
