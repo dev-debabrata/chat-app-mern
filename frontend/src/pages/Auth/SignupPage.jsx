@@ -14,7 +14,7 @@ function SignUpPage() {
 
     return (
         <div className="w-[450px] p-8 bg-stone-950 rounded-md shadow">
-            <div className="text-center my-6">
+            <div className="text-center my-4">
                 <MessageCircleIcon className="w-12 h-12 mx-auto text-stone-200 mb-4" />
                 <h2 className="text-2xl font-bold text-stone-200 mb-2">Create Account</h2>
                 <p className="text-stone-400">Sign up for a new account</p>
@@ -93,7 +93,7 @@ function SignUpPage() {
             </form>
 
             <div className="mt-6 text-center">
-                <Link to="/login" className="px-4 py-2 inline-block bg-stone-500/10 rounded-lg text-stone-400 hover:text-stone-500 text-sm transition-colors">
+                <Link to="/login" className="px-4 py-2 inline-block bg-stone-500/10 rounded-lg text-stone-400 hover:text-blue-500 text-sm transition-colors">
                     Already have an account? Login
                 </Link>
             </div>

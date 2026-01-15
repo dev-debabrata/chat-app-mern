@@ -14,7 +14,7 @@ function LoginPage() {
 
     return (
         <div className="w-[450px] p-8 bg-stone-950 rounded-md shadow">
-            <div className="text-center text-white my-6">
+            <div className="text-center text-white my-4">
                 <MessageCircleIcon className="w-12 h-12 mx-auto text-stone-200 mb-4" />
                 <h2 className="text-2xl font-bold text-slate-200 mb-2">
                     Welcome Back
@@ -80,7 +80,7 @@ function LoginPage() {
             <div className="mt-6 text-center">
                 <Link
                     to="/signup"
-                    className="px-4 py-2 inline-block bg-stone-500/10 rounded-lg text-stone-400 hover:text-stone-500 text-sm transition-colors">
+                    className="px-4 py-2 inline-block bg-stone-500/10 rounded-lg text-stone-400 hover:text-blue-500 text-sm transition-colors">
                     Don't have an account? Sign Up
                 </Link>
             </div>
