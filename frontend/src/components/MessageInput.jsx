@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-// import useKeyboardSound from "../hooks/useKeyboardSound";
 import { useChatStore } from "../store/useChatStore";
 import { useAuthStore } from "../store/useAuthStore";
 import toast from "react-hot-toast";
 import { ImageIcon, SendIcon, XIcon } from "lucide-react";
 
 function MessageInput() {
-    // const { playRandomKeyStrokeSound } = useKeyboardSound();
 
     const [text, setText] = useState("");
     const [imagePreview, setImagePreview] = useState(null);
@@ -22,8 +20,6 @@ function MessageInput() {
         e.preventDefault();
 
         if (!text.trim() && !imagePreview) return;
-
-        // if (isSoundEnabled) playRandomKeyStrokeSound();
 
         sendMessage({
             text: text.trim(),
@@ -118,7 +114,6 @@ function MessageInput() {
                     value={text}
                     onChange={(e) => {
                         setText(e.target.value);
-                        // isSoundEnabled && playRandomKeyStrokeSound();
                         handleTyping();
                     }}
                     className="flex-1 text-stone-100 bg-stone-900/50 border border-stone-500/50 rounded-lg py-2 px-4"

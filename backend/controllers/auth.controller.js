@@ -102,10 +102,21 @@ export const login = async (req, res) => {
 
 
 // Logout Authentication
-export const logout = (_, res) => {
-    res.cookie("jwt", "", { maxAge: 0 });
+export const logout = (req, res) => {
+    res.clearCookie("jwt", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    });
+
     res.status(200).json({ message: "Logged out successfully" });
 };
+
+
+// export const logout = (_, res) => {
+//     res.cookie("jwt", "", { maxAge: 0 });
+//     res.status(200).json({ message: "Logged out successfully" });
+// };
 
 
 
